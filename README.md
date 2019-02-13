@@ -50,14 +50,13 @@ markdownGenerator(configuration);
 ```
 
 ## Markdown Format
-markdown generator uses gfm formatted markdown. 
+markdown generator uses [GitHub Flavored Markdown](https://github.github.com/gfm/) and is parsed with [marked](https://github.com/markedjs/marked). 
 
 A cheatsheet is available: [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet]
 
-There is one non-stnadard extension to markdown. Markdown Generator has the ability to inclde code files inline. 
+There is one non-standard extension to markdown. Markdown Generator has the ability to inclde code files inline. 
 
 To do so:
-
 
 ```markdown
 ```javascript?./inline-example.js
@@ -69,3 +68,5 @@ And it renders as:
 ```javascript?./inline-example.js
 
 ```
+
+## Format

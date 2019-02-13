@@ -1,3 +1,6 @@
+const path = require('path');
 const markdownGenerator = require('../source');
 
-markdownGenerator();
+markdownGenerator({
+    outputLocation: path.resolve(__dirname, '../docs'),
+});
