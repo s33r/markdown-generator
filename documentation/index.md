@@ -70,5 +70,3 @@ And it renders as:
 ```javascript?./inline-example.js
 
 ```
-
-## Format
