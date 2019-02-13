@@ -1,36 +1,18 @@
 const yamlFront = require('yaml-front-matter');
 const marked = require('marked');
 const fs = require('fs-extra');
-const path = require('path');
 
-const util = require('../util');
+const renderLink = require('./renderLink');
+const renderCode = require('./renderCode');
 
 const renderer = new marked.Renderer();
 
-renderer.link = function(href, title, text) {
-    const newHref = href.replace(util.MD_REGEX, '.html');
+renderer.link = renderLink;
 
-    const hrefAttribute = !!href ? ` href="${newHref}"` : '';
-    const titleAttribute = !!title ? ` title="${title}"` : '';
-
-    return `<a${hrefAttribute}${titleAttribute}>${text}</a>`;
-};
-
-const originalCode = renderer.code;
+const originalCodeRender = renderer.code;
 
 renderer.code = function(code, language, escaped) {
-    const parts = language.split('?');
-
-    const actualLanguage = parts[0];
-    let actualCode = code;
-
-    if(parts.length > 1) {
-        const fullPath = path.resolve(path.dirname(this.options.fileLocation), parts[1]);
-        actualCode = fs.readFileSync(fullPath, {encoding: 'utf8'});
-        console.log(actualCode);
-    }
-
-    return originalCode.call(this, actualCode, actualLanguage, escaped);
+    return renderCode.call(this, originalCodeRender, code, language, escaped);
 };
 
 module.exports = function renderMarkdownFile(fileLocation) {

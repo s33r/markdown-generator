@@ -6,7 +6,7 @@
   "scripts": {
     "build:docs": "node ./automation/build-docs.js",
     "copy:readme": "node ./automation/copy-readme.js",
-    "serve": "http-server ./deploy/docs",
+    "serve": "http-server .",
     "test": "jest --coverage"
   },
   "repository": {

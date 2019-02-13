@@ -60,7 +60,6 @@ test('node should have set data fields', () => {
     };
 
     processNode(node, inputLocation, outputLocation);
-    console.log(node);
 
     expect(node.raw).toStrictEqual('raw');
     expect(node.data).toStrictEqual('data');
@@ -76,7 +75,6 @@ test('node should have set title', () => {
     };
 
     processNode(node, inputLocation, outputLocation);
-    console.log(node);
 
     expect(node.meta.title).toStrictEqual('Example');
 });
