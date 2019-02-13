@@ -1,12 +1,11 @@
 const lunr = require('lunr');
-const walkTree = require('./walkTree');
-const renderMarkdownFile = require('./renderMarkdownFile');
 const path = require('path');
+
+const walkTree = require('./walkTree');
 const util = require('./util');
 
 module.exports = function createSearchIndex(tree) {
     const searchObjects = [];
-
 
     walkTree(tree, node => {
         if(node.isMarkdown) {

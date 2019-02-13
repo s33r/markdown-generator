@@ -18,58 +18,80 @@
             box-sizing: border-box;
         }
 
-        .container {
-            display: flex;
+        .nav-panel, .content-panel {
+            padding: 4px;
         }
 
-        .nav-panel {
-            text-transform: capitalize;
-            min-width: 341px;
-        }
-
-        .content-panel {
-            flex-grow: 1;
-            padding: 12px;
-        }
-
-        .nav-panel ol {
+        ol {
             list-style: none;
         }
 
-        pre, .content-panel, img {
-            max-width: 768px;
+        .nav-panel > ol {
+            padding: 0;
         }
 
-        img {
-            max-width: 640px;
+        label, input {
             display: block;
-            margin: 0 auto;
+        }
+
+        pre {
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        @media screen and (min-width: 768px) {
+            .container {
+                max-width: 768px;
+                margin: 0 auto;
+            }
+
+            main {
+                display: flex;
+
+            }
+
+            .content-panel {
+                min-width: 0;
+                flex-grow: 1;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            .container {
+                width: 100%;
+                max-width: 1024px;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1><%- title %></h1>
-</header>
+<div class="container">
 
-<main class="container">
-    <div class="nav-panel">
-        <label for="search-input">Search</label>
-        <input id="search-input" type="search">
-        <button id="search-button">Search</button>
-        <button id="clear-button">Clear</button>
-        <ol id="search-results"></ol>
-        <hr/>
-        <%= node.navigation %>
-    </div>
-    <article class="content-panel">
-        <%= node.data %>
-    </article>
-</main>
-<footer>
-    <small>Copyright Stuff</small>
-</footer>
+    <header>
+        <h1><%- title %></h1>
+    </header>
+
+    <main>
+        <div class="nav-panel">
+            <label for="search-input">Search</label>
+            <input id="search-input" type="search">
+            <button id="search-button">Search</button>
+            <button id="clear-button">Clear</button>
+            <ol id="search-results"></ol>
+            <hr/>
+            <%= node.navigation %>
+        </div>
+        <article class="content-panel">
+            <%= node.data %>
+        </article>
+    </main>
+    <footer>
+        <small>Copyright Stuff</small>
+    </footer>
+</div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {

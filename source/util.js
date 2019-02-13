@@ -5,7 +5,6 @@ module.exports.MD_REGEX = /\.md$/;
 module.exports.NUMBER_PREFIX_REGEX = /^\d+-/;
 
 module.exports.getTitle = function(node) {
-
     let title = node.name;
 
     if(node.name.includes('index.md')) {

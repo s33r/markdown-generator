@@ -50,7 +50,7 @@ markdownGenerator(configuration);
 ```
 
 ## Markdown Format
-markdown generator uses gfm formatted markdown. 
+markdown generator uses [GitHub Flavored Markdown](https://github.github.com/gfm/) and is parsed with [marked](https://github.com/markedjs/marked). 
 
 A cheatsheet is available: [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet]
 

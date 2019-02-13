@@ -6,7 +6,8 @@
   "scripts": {
     "build:docs": "node ./automation/build-docs.js",
     "copy:readme": "node ./automation/copy-readme.js",
-    "serve": "http-server ./deploy/docs"
+    "serve": "http-server ./deploy/docs",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "yaml-front-matter": "^4.0.0"
   },
   "devDependencies": {
-    "http-server": "^0.11.1"
+    "http-server": "^0.11.1",
+    "jest": "^24.1.0"
   }
 }

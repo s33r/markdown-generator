@@ -1,10 +1,11 @@
 const yamlFront = require('yaml-front-matter');
 const marked = require('marked');
-const renderer = new marked.Renderer();
 const fs = require('fs-extra');
-const util = require('./util');
 const path = require('path');
 
+const util = require('../util');
+
+const renderer = new marked.Renderer();
 
 renderer.link = function(href, title, text) {
     const newHref = href.replace(util.MD_REGEX, '.html');
