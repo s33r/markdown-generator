@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Documentation - Markdown Generator</title>
+    <title>Build - Markdown Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/default.min.css">
@@ -83,61 +83,17 @@
             <hr/>
             <ol><li><b><a href="./index.html">Documentation</a></b>
 <ol>
-<li><a href="./build.html">Build</a></li>
+<li><b>Build</b></li>
 </ol>
 </li></ol>
         </div>
         <article class="content-panel">
-            <h1 id="markdown-generator">Markdown Generator</h1>
-<p>Creates a static site from markdown files.</p>
-<p><a href="https://github.com/s33r/markdown-generator">Github Repository</a></p>
-<h2 id="installation">Installation</h2>
-<pre><code class="language-shell">npm install markdown-generator --save-dev</code></pre>
-<h2 id="api-usage">API Usage</h2>
-<pre><code class="language-javascript">const markdownGenerator = require(&#39;markdown-generator&#39;);
-
-markdownGenerator();
-</code></pre>
-<h2 id="configuration-options">Configuration Options</h2>
-<p>Usage:</p>
-<pre><code class="language-javascript">const markdownGenerator = require(&#39;markdown-generator&#39;);
-
-const configuration = {
-
-    // The directory where the generator will search for markdown files.
-    inputLocation: path.resolve(__dirname, &#39;../documentation&#39;),
-
-    // The directory where html will be output.
-    outputLocation: path.resolve(__dirname, &#39;../deploy/docs&#39;),
-
-    // The file to use as the template for rendering html
-    templateLocation: path.resolve(__dirname, &#39;./templates/index.html&#39;),
-
-    // If true, do not output any files.
-    dryrun: false,
-
-    // If true, search will be enabled. If search is disabled, you may want to remove it from the default template.
-    enableSearch: true,
-
-    // The title to use for the static site.
-    title: &#39;Default Documentation&#39;,    
-};
-
-markdownGenerator(configuration);
-</code></pre>
-<h2 id="markdown-format">Markdown Format</h2>
-<p>markdown generator uses <a href="https://github.github.com/gfm/">GitHub Flavored Markdown</a> and is parsed with <a href="https://github.com/markedjs/marked">marked</a>. </p>
-<p>A cheatsheet is available: [<a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet]">https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet]</a></p>
-<p>There is one non-standard extension to markdown. Markdown Generator has the ability to inclde code files inline. </p>
-<p>To do so:</p>
-<pre><code class="language-markdown">```javascript?./inline-example.js
-
-\```</code></pre>
-<p>And it renders as:</p>
-<pre><code class="language-javascript">const example = true;
-
-console.log(&#39;This code has been inlined into the documentation&#39;);</code></pre>
-<h2 id="format">Format</h2>
+            <h1 id="build-documentation">Build Documentation</h1>
+<p>To build the documentation site, run:</p>
+<p><code>npm run build:docs</code></p>
+<h1 id="testing">Testing</h1>
+<p> To run the unit tests:</p>
+<p> <code>npm run test</code></p>
 
         </article>
     </main>

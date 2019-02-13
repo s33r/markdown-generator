@@ -2,6 +2,8 @@
 
 Creates a static site from markdown files.
 
+[Github Repository](https://github.com/s33r/markdown-generator)
+
 ## Installation
 
 ```shell
