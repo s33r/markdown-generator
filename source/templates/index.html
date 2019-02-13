@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title><%- node.meta.title %> - <%- title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .nav-panel {
+            text-transform: capitalize;
+            min-width: 341px;
+        }
+
+        .content-panel {
+            flex-grow: 1;
+            padding: 12px;
+        }
+
+        .nav-panel ol {
+            list-style: none;
+        }
+
+        pre, .content-panel, img {
+            max-width: 768px;
+        }
+
+        img {
+            max-width: 640px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><%- title %></h1>
+</header>
+
+<main class="container">
+    <div class="nav-panel">
+        <label for="search-input">Search</label>
+        <input id="search-input" type="search">
+        <button id="search-button">Search</button>
+        <button id="clear-button">Clear</button>
+        <ol id="search-results"></ol>
+        <hr/>
+        <%= node.navigation %>
+    </div>
+    <article class="content-panel">
+        <%= node.data %>
+    </article>
+</main>
+<footer>
+    <small>Copyright Stuff</small>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+
+<script>
+    const fileLinkIndex = <%= node.fileLinkIndex %>;
+    const searchIndex = <%= searchIndex %>;
+</script>
+
+<script>
+    (function initializeSearch() {
+        const lunrSearch = lunr.Index.load(searchIndex);
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const clearButton = document.getElementById('clear-button');
+        const resultsList = document.getElementById('search-results');
+
+        searchButton.addEventListener('click', event => {
+            const results = lunrSearch.search(searchInput.value)
+                .map(result => fileLinkIndex[result.ref])
+                .filter(result => !!result);
+
+            console.log(results);
+
+            resultsList.innerHTML = '';
+
+            results.forEach(result => {
+                const listElement = document.createElement('li');
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', result.href);
+                linkElement.innerText = result.title;
+
+                listElement.appendChild(linkElement);
+                resultsList.appendChild(listElement);
+            });
+
+            if(results.length <= 0) {
+                const listElement = document.createElement('li');
+                listElement.innerText = 'No Results Found';
+                resultsList.appendChild(listElement);
+            }
+        });
+
+        clearButton.addEventListener('click', event => {
+            searchInput.value = '';
+            resultsList.innerHTML = '';
+        });
+
+
+    })();
+</script>
+
+
+</body>
+</html>
