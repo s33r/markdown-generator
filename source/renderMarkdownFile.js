@@ -25,7 +25,8 @@ renderer.code = function(code, language, escaped) {
 
     if(parts.length > 1) {
         const fullPath = path.resolve(path.dirname(this.options.fileLocation), parts[1]);
-        actualCode = fs.readFileSync(fullPath);
+        actualCode = fs.readFileSync(fullPath, {encoding: 'utf8'});
+        console.log(actualCode);
     }
 
     return originalCode.call(this, actualCode, actualLanguage, escaped);
@@ -36,7 +37,7 @@ module.exports = function renderMarkdownFile(fileLocation) {
         return null;
     }
 
-    const raw = fs.readFileSync(fileLocation);
+    const raw = fs.readFileSync(fileLocation, {encoding: 'utf8'});
     const meta = yamlFront.loadFront(raw);
     const content = marked(meta.__content, {
         fileLocation,
