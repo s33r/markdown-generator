@@ -1,5 +1,7 @@
 # Markdown Generator
 
+[![Build Status](https://travis-ci.org/s33r/markdown-generator.svg?branch=master)](https://travis-ci.org/s33r/markdown-generator)
+
 Creates a static site from markdown files.
 
 [Github Repository](https://github.com/s33r/markdown-generator)
