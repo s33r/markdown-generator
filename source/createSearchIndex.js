@@ -1,8 +1,6 @@
 const lunr = require('lunr');
-const path = require('path');
 
 const walkTree = require('./walkTree');
-const util = require('./util');
 
 module.exports = function createSearchIndex(tree) {
     const searchObjects = [];
@@ -14,7 +12,6 @@ module.exports = function createSearchIndex(tree) {
                 content: node.data,
                 title: node.meta.title,
             });
-
         }
     });
 
