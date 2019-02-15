@@ -33,9 +33,6 @@ module.exports = function createRenderer(templates) {
                  //TODO: ACW Replace with fromEntries
                  const data = _.fromPairs(args.map((arg, index) => [rendererMethods[method][index], arg]));
 
-                 console.log(method);
-                 console.log(args);
-                 console.log(data);
                  return templates[method](data);
              }
          }
