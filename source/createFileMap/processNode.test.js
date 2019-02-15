@@ -1,16 +1,18 @@
 const processNode = require('./processNode');
-const renderMarkdownFile = require('./renderMarkdownFile');
+const renderMarkdown = require('../renderMarkdown');
 
-jest.mock('./renderMarkdownFile');
+jest.mock('../renderMarkdown');
 
-renderMarkdownFile.mockImplementation(() => ({
+renderMarkdown.mockImplementation(() => ({
     raw: 'raw',
     meta: { test: true},
     content: 'data',
 }));
 
-const inputLocation = '/test';
-const outputLocation = '/deploy';
+const configuration = {
+    inputLocation: '/test',
+    outputLocation: '/deploy'
+};
 
 test('markdown node should be correctly flagged', () => {
     const node = {
@@ -20,7 +22,7 @@ test('markdown node should be correctly flagged', () => {
         path: '/test/markdown/example.md',
     };
 
-    processNode(node, inputLocation, outputLocation);
+    processNode(node, configuration);
 
     expect(node.isMarkdown).toBeTruthy();
 });
@@ -33,7 +35,7 @@ test('non-markdown node should be correctly flagged', () => {
         path: '/test/markdown/example.txt',
     };
 
-    processNode(node, inputLocation, outputLocation);
+    processNode(node, configuration);
 
     expect(node.isMarkdown).toBeFalsy();
 });
@@ -46,7 +48,7 @@ test('node should have correct id', () => {
         path: '/test/markdown/example.md',
     };
 
-    processNode(node, inputLocation, outputLocation);
+    processNode(node, configuration);
 
     expect(node.id).toBe(2);
 });
@@ -59,7 +61,7 @@ test('node should have set data fields', () => {
         path: '/test/markdown/example.md',
     };
 
-    processNode(node, inputLocation, outputLocation);
+    processNode(node, configuration);
 
     expect(node.raw).toStrictEqual('raw');
     expect(node.data).toStrictEqual('data');
@@ -74,7 +76,7 @@ test('node should have set title', () => {
         path: '/test/markdown/example.md',
     };
 
-    processNode(node, inputLocation, outputLocation);
+    processNode(node, configuration);
 
     expect(node.meta.title).toStrictEqual('Example');
 });

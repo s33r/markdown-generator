@@ -1,16 +1,16 @@
 const path = require('path');
 
-const renderMarkdownFile = require('./renderMarkdownFile');
+const renderMarkdown = require('../renderMarkdown');
 const util = require('../util');
 
 let currentId = 0;
 
-module.exports = function processNode(node, inputLocation, outputLocation) {
+module.exports = function processNode(node, configuration) {
     node.isMarkdown = node.type === 'file' && node.extension === '.md';
     node.id = currentId++;
 
     if(node.isMarkdown) {
-        const data = renderMarkdownFile(node.path);
+        const data = renderMarkdown(node.path, configuration.templates);
 
         node.raw = data.raw;
         node.meta = data.meta || {};
@@ -19,9 +19,9 @@ module.exports = function processNode(node, inputLocation, outputLocation) {
         node.meta.title = node.meta.title || util.getTitle(node);
     }
 
-    node.pathRoot = path.relative(inputLocation, node.path);
+    node.pathRoot = path.relative(configuration.inputLocation, node.path);
 
-    node.outputLocation = path.resolve(outputLocation, node.pathRoot);
+    node.outputLocation = path.resolve(configuration.outputLocation, node.pathRoot);
 
     if(node.isMarkdown) {
         node.outputLocation = node.outputLocation.replace(util.MD_REGEX, '.html');
