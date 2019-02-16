@@ -1,5 +1,5 @@
 {
-  "name": "@aaron-cw-public/markdown-generator",
+  "name": "@aaron-cw/markdown-generator",
   "version": "1.0.0",
   "description": "Creates a static website from markdown files",
   "main": "index.js",
