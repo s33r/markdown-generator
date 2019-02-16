@@ -4,6 +4,8 @@
 
 Creates a static site from markdown files.
 
+This software is still in development and not production ready.
+
 [Github Repository](https://github.com/s33r/markdown-generator)
 
 ## Installation
@@ -11,6 +13,7 @@ Creates a static site from markdown files.
 ```shell
 npm install markdown-generator --save-dev
 ```
+
 
 
 ## API Usage
