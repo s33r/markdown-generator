@@ -1,3 +1,5 @@
+const logger = require('log4js').getLogger('main');
+
 const lunr = require('lunr');
 
 const walkTree = require('./walkTree');
@@ -22,6 +24,7 @@ module.exports = function createSearchIndex(tree) {
 
         searchObjects.forEach(function (searchObject) {
             this.add(searchObject);
+            logger.debug(`Search Entry - (${searchObject.id}:${searchObject.title})`);
         }, this);
 
     });
