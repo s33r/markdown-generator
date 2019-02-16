@@ -26,6 +26,7 @@ module.exports = function buildDocs(options) {
 
     logger.info(`Loaded Configuration`);
     logger.info(`Starting Translation: ${options.inputLocation} -> ${options.outputLocation}`);
+    logger.info(`Page Template: ${configuration.templateLocations.page}`);
 
 
     const fileMap = createFileMap(configuration);
@@ -40,7 +41,7 @@ module.exports = function buildDocs(options) {
     logger.info('Rendered HTML');
 
     if(!configuration.dryrun) {
-        outputFiles(configuration.outputLocation, fileMap);
+        outputFiles(configuration.outputLocation, fileMap, configuration.themeFiles);
         logger.info('Created HTML Files');
     } else {
         logger.info('dryrun=true, Skipping HTML file output');
