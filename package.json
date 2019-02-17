@@ -1,6 +1,6 @@
 {
   "name": "@aaron-cw/markdown-generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Creates a static website from markdown files",
   "main": "source/index.js",
   "scripts": {
