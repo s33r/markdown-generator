@@ -10,7 +10,23 @@ body {
 
 .border-table {
     width: 100%;
+    border-collapse: collapse;
 }
+
+.border-table th {
+    text-align: left;
+    border-bottom: solid medium grey;
+    padding: 6px;
+}
+
+.border-table td {
+    padding: 6px;
+}
+
+.border-table tbody tr:nth-child(odd) {
+    background-color: lightgray;
+}
+
 
 hr {
     border: solid thin grey;

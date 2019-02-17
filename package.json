@@ -2,7 +2,7 @@
   "name": "@aaron-cw/markdown-generator",
   "version": "1.0.1",
   "description": "Creates a static website from markdown files",
-  "main": "index.js",
+  "main": "source/index.js",
   "scripts": {
     "build:docs": "node ./automation/build-docs.js",
     "copy:readme": "node ./automation/copy-readme.js",
