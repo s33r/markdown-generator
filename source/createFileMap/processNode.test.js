@@ -11,7 +11,8 @@ renderMarkdown.mockImplementation(() => ({
 
 const configuration = {
     inputLocation: '/test',
-    outputLocation: '/deploy'
+    outputLocation: '/deploy',
+    themeOutputLocation: '/deploy/theme',
 };
 
 test('markdown node should be correctly flagged', () => {

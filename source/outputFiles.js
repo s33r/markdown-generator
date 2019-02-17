@@ -4,8 +4,9 @@ const fs = require('fs-extra');
 const walkTree = require('./walkTree');
 
 
-module.exports = function outputFiles(outputLocation, tree, themeFiles) {
+module.exports = function outputFiles(outputLocation, themeOutputLocation, tree, themeFiles) {
     fs.ensureDirSync(outputLocation);
+
 
     walkTree(tree, node => {
         if(node.type === 'directory') {
@@ -20,8 +21,11 @@ module.exports = function outputFiles(outputLocation, tree, themeFiles) {
         }
     });
 
+    if(themeFiles) {
+        fs.ensureDirSync(themeOutputLocation);
+    }
+
     themeFiles.forEach(themeFile => {
-        console.log(themeFile);
         fs.copySync(themeFile.inputLocation, themeFile.outputLocation);
     });
 };

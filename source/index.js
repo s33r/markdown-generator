@@ -19,8 +19,6 @@ log4js.configure({
 
 const logger = log4js.getLogger('main');
 
-
-
 module.exports = function buildDocs(options) {
     const configuration = setup(options);
 
@@ -41,7 +39,7 @@ module.exports = function buildDocs(options) {
     logger.info('Rendered HTML');
 
     if(!configuration.dryrun) {
-        outputFiles(configuration.outputLocation, fileMap, configuration.themeFiles);
+        outputFiles(configuration.outputLocation, configuration.themeOutputLocation, fileMap, configuration.themeFiles);
         logger.info('Created HTML Files');
     } else {
         logger.info('dryrun=true, Skipping HTML file output');

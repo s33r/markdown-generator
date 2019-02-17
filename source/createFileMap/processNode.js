@@ -23,7 +23,9 @@ module.exports = function processNode(node, configuration) {
 
     node.outputLocation = path.resolve(configuration.outputLocation, node.pathRoot);
 
+
     if(node.isMarkdown) {
         node.outputLocation = node.outputLocation.replace(util.MD_REGEX, '.html');
+        node.themeLocation = './' + path.relative(path.dirname(node.outputLocation), configuration.themeOutputLocation);
     }
 };

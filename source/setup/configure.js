@@ -1,5 +1,6 @@
 const logger = require('log4js').getLogger('main');
 const _ = require('lodash');
+const path = require('path');
 
 const defaultOptions = require('./defaultOptions');
 const compileTemplates = require('./compileTemplates');
@@ -22,6 +23,7 @@ module.exports = function configure(options) {
     _.merge(result.templates, compileTemplates(templateStrings));
     logger.info('Compiled Template Strings');
 
+    result.themeOutputLocation = path.resolve(result.outputLocation, './theme');
     result.themeFiles = mapThemeFiles(result);
 
     return result;
