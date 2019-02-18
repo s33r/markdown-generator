@@ -5,41 +5,83 @@
     <title><%- node.meta.title %> - <%- title %></title>
     <meta name="generator" content="<%- generator %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<%- node.themeLocation %>/normalize.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/default.min.css">
-    <link rel="stylesheet" href="<%- node.themeLocation %>/index.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
-    <script src="https://unpkg.com/lunr/lunr.js"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          integrity="sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g="
+          crossorigin="anonymous" />
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+            integrity="sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0="
+            crossorigin="anonymous">
+    </script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/default.min.css"
+          integrity="sha256-Zd1icfZ72UBmsId/mUcagrmN7IN5Qkrvh75ICHIQVTk="
+          crossorigin="anonymous" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"
+            integrity="sha256-sNPiigbfSkqUzMc5rgrdztLnneCMAp6W9wetJUZu9Zw="
+            crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.5/lunr.min.js"
+            integrity="sha256-uScRgGrInD2VnPNpjmlQtB2XRVLczyyZvrTkYi+e31U="
+            crossorigin="anonymous">
+    </script>
 
     <style>
+        h2:first-of-type {
+            margin-top:0;
+        }
 
+        hr {
+            border: solid thin #26a69a;
+        }
+
+        ol {
+            list-style: none;
+        }
+
+        .nav-panel > ol, #search-results {
+            padding-left: 0;
+        }
     </style>
+
 </head>
 <body>
 
 <div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h1><%- title %></h1>
+        </div>
+    </div>
 
-    <header>
-        <h1><%- title %></h1>
-    </header>
+    <div class="row">
+        <div class="col s12 m3 nav-panel">
+            <div class="input-field">
+                <i class="material-icons prefix">search</i>
+                <input placeholder="Search..." id="search-input" type="text" class="validate">
+                <label for="search-input">Search</label>
 
-    <main>
-        <div class="nav-panel">
-            <label for="search-input">Search</label>
-            <input id="search-input" type="search">
-            <button id="search-button">Search</button>
-            <button id="clear-button">Clear</button>
+            </div>
+            <div class="right-align">
+                <button class="waves-effect waves-light btn-small" id="clear-button">Clear</button>
+                <button class="waves-effect waves-light btn-small" id="search-button">Search</button>
+            </div>
             <ol id="search-results"></ol>
             <hr/>
             <%= node.navigation %>
         </div>
-        <article class="content-panel">
+        <div class="col s12 m9">
             <%= node.data %>
-        </article>
-    </main>
-    <footer>
-        <small>Copyright Stuff</small>
-    </footer>
+        </div>
+    </div>
 </div>
 
 
