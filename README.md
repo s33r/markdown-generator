@@ -1,52 +1,34 @@
-# Markdown Generator
-
 [![Build Status](https://travis-ci.org/s33r/markdown-generator.svg?branch=master)](https://travis-ci.org/s33r/markdown-generator)
+
+------------------------------------------------------------------------------------------------------------------------
 
 Creates a static site from markdown files.
 
-This software is still in development and not production ready.
+>This software is still in development and is not production ready.
 
 [Github Repository](https://github.com/s33r/markdown-generator)
 
 ## Installation
 
 ```shell
-npm install markdown-generator --save-dev
+npm install @aaron-cw/markdown-generator --save-dev
 ```
 
+## Usage
 
-
-## API Usage
-
-```javascript
-const markdownGenerator = require('markdown-generator');
-
-markdownGenerator();
-
-```
-
-## Configuration Options
+Note: _Use absolute paths for all configuration options._
 
 Usage:
 ```javascript
-const markdownGenerator = require('markdown-generator');
+const markdownGenerator = require('@aaron-cw/markdown-generator');
 
 const configuration = {
     
-    // The directory where the generator will search for markdown files.
+    // The directory of markdown files to build
     inputLocation: path.resolve(__dirname, '../documentation'),
     
-    // The directory where html will be output.
+    // The directory where the resulting html files will be output.
     outputLocation: path.resolve(__dirname, '../deploy/docs'),
-    
-    // The file to use as the template for rendering html
-    templateLocation: path.resolve(__dirname, './templates/index.html'),
-    
-    // If true, do not output any files.
-    dryrun: false,
-    
-    // If true, search will be enabled. If search is disabled, you may want to remove it from the default template.
-    enableSearch: true,
     
     // The title to use for the static site.
     title: 'Default Documentation',    
@@ -55,6 +37,8 @@ const configuration = {
 markdownGenerator(configuration);
 
 ```
+
+The full set of options is detailed [here](./options.md).
 
 ## Markdown Format
 markdown generator uses [GitHub Flavored Markdown](https://github.github.com/gfm/) and is parsed with [marked](https://github.com/markedjs/marked). 
