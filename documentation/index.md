@@ -50,9 +50,9 @@ There is one non-standard extension to markdown. Markdown Generator has the abil
 To do so:
 
 ```markdown
-```javascript?./inline-example.js
+`````javascript?./inline-example.js
 
-\```
+``````
 ```
 
 And it renders as:

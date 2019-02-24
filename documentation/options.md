@@ -15,5 +15,7 @@ title: Configuration Options
 | themeFiles     | [ ]                   | Additional files to copy into the output directory.
 
 
-## Notes
-* Templates loaded from the templateLocations take precedence over template strings.
+_Templates loaded from the templateLocations take precedence over template strings._
+
+
+

@@ -2,7 +2,7 @@ const marked = require('marked');
 const _ = require('lodash');
 
 const rendererMethods = {
-    'code' : ['code', 'lang', 'escaped'], //TODO: ACW marked calles lang infostring. whats the deal with that?
+    'code' : ['code', 'lang', 'escaped'], //TODO: ACW marked calls lang infostring. whats the deal with that?
     'blockquote': ['text'], //NOTE: ACW marked calls the arg 'quote' but text is used everywhere else.
     'html': ['html'],
     'heading': ['text', 'level', 'raw', 'slugger'],
