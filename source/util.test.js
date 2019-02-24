@@ -14,7 +14,7 @@ test('getTitle to be defined', () => {
 
 test('title not to include extension', () => {
     const node = {
-        name: 'test.md'
+        name: 'test.md',
     };
 
     expect(util.getTitle(node)).toBe('Test');
@@ -22,7 +22,7 @@ test('title not to include extension', () => {
 
 test('title not to be correctly spaced and capitalized', () => {
     const node = {
-        name: 'test-file.md'
+        name: 'test-file.md',
     };
 
     expect(util.getTitle(node)).toBe('Test File');
@@ -30,7 +30,7 @@ test('title not to be correctly spaced and capitalized', () => {
 
 test('title not to include numbers', () => {
     const node = {
-        name: '00-test.md'
+        name: '00-test.md',
     };
 
     expect(util.getTitle(node)).toBe('Test');
@@ -39,7 +39,7 @@ test('title not to include numbers', () => {
 test('title to be set from path', () => {
     const node = {
         name: 'nested/files/index.md',
-        path:'nested/files/index.md'
+        path:'nested/files/index.md',
     };
 
     expect(util.getTitle(node)).toBe('Files');

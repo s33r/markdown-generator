@@ -16,7 +16,7 @@ module.exports = function createNavigation(tree) {
             }
         }, node => {
             if(node.type === 'directory') {
-                result += `</ol>\n</li>`;
+                result += '</ol>\n</li>';
             }
         });
 

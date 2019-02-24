@@ -1,5 +1,4 @@
 const logger = require('log4js').getLogger('main');
-const path = require('path');
 const fs = require('fs-extra');
 const walkTree = require('./walkTree');
 

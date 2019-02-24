@@ -16,8 +16,8 @@ test('loads referenced file', () => {
     const language = 'javascript?./example.js';
     const mockThis = {
         options : {
-            fileLocation: './test/example.md'
-        }
+            fileLocation: './test/example.md',
+        },
     };
 
     expect(renderCode.call(mockThis, mockOriginalCodeRender, code, language)).toBe(referencedTestCode);
@@ -28,8 +28,8 @@ test('renders code', () => {
     const language = 'javascript';
     const mockThis = {
         options : {
-            fileLocation: './test/example.md'
-        }
+            fileLocation: './test/example.md',
+        },
     };
 
     expect(renderCode.call(mockThis, mockOriginalCodeRender, code, language)).toBe(code);

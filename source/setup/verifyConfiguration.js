@@ -6,7 +6,7 @@ module.exports = function verifyConfiguration(configuration) {
     }
 
     if(!configuration.inputLocation) {
-        logger.fatal('Missing input location, the inputLocation must be a valid directory.')
+        logger.fatal('Missing input location, the inputLocation must be a valid directory.');
 
     }
 

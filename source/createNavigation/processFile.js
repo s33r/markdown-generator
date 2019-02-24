@@ -11,7 +11,7 @@ module.exports = function processFile(current, node, fileLinkIndex) {
         : '.';
 
     const href =`${prefix}/${node.name.replace(util.MD_REGEX, '.html')}`;
-    const text = node.meta.title || getTitle(node.name);
+    const text = node.meta.title || util.getTitle(node.name);
 
     fileLinkIndex[node.id] = {
         href,

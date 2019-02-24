@@ -11,7 +11,7 @@ module.exports.getTitle = function(node) {
         title = path.dirname(node.path);
         title = path.basename(title);
     } else {
-        title = path.basename(node.name, '.md')
+        title = path.basename(node.name, '.md');
     }
 
     title = title.replace(module.exports.NUMBER_PREFIX_REGEX, '');

@@ -11,7 +11,7 @@ module.exports = function renderCode(originalCodeRender, code, language, escaped
         const fullPath = path.resolve(path.dirname(this.options.fileLocation), parts[1]);
 
         actualCode = fs.readFileSync(fullPath, {
-            encoding: 'utf8'
+            encoding: 'utf8',
         });
     }
 

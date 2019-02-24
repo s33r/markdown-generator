@@ -32,12 +32,12 @@ module.exports = function renderMarkdownFile(fileLocation, templates) {
     initializeOldRenderer(renderer);
 
     const raw = fs.readFileSync(fileLocation, {
-        encoding: 'utf8'
+        encoding: 'utf8',
     });
     const meta = yamlFront.loadFront(raw);
     const content = marked(meta.__content, {
         fileLocation,
-        renderer
+        renderer,
     });
 
     return {

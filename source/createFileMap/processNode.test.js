@@ -5,7 +5,7 @@ jest.mock('../renderMarkdown');
 
 renderMarkdown.mockImplementation(() => ({
     raw: 'raw',
-    meta: { test: true},
+    meta: { test: true,},
     content: 'data',
 }));
 

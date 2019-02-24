@@ -57,5 +57,11 @@ The ``templateLocations`` object configures the specific templates your theme de
 
 The ``themeFiles`` array contains a list of files you would like to include in the output. These files will be output to the ``./theme`` directory in the output. 
 
+## Templates
+
+Templates are compiled into [lodash templates](https://lodash.com/docs/4.17.11#template). Use <%= variable %> or <%- variable %> to output the contents of template variables.
+
+* [Page Template](./00-page-template.md)
+* [HTML Templates](./01-html-templates.md)
 
 

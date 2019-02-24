@@ -21,7 +21,7 @@ test('creates a link', () => {
     };
 
     expect(processDirectory(current, node, fileLinkIndex))
-        .toBe(`<li><a href="test/deep/index.html">deep</a>\n<ol>\n`);
+        .toBe('<li><a href="test/deep/index.html">deep</a>\n<ol>\n');
 });
 
 test('creates bold for current location', () => {
@@ -45,7 +45,7 @@ test('creates bold for current location', () => {
     };
 
     expect(processDirectory(current, node, fileLinkIndex))
-        .toBe(`<li><b><a href="./index.html">deep</a></b>\n<ol>\n`);
+        .toBe('<li><b><a href="./index.html">deep</a></b>\n<ol>\n');
 });
 
 test('populates fileLinkIndex', () => {
@@ -63,8 +63,8 @@ test('populates fileLinkIndex', () => {
                 name: 'index.md',
                 meta: {
                     title: 'Test Index',
-                }
-            }
+                },
+            },
         ],
     };
 
@@ -104,5 +104,5 @@ test('doesn\'t populate fileLinkIndex' , () => {
     };
 
     expect(processDirectory(current, node, fileLinkIndex))
-        .toBe(`<li><b><a href="./index.html">deep</a></b>\n<ol>\n`);
+        .toBe('<li><b><a href="./index.html">deep</a></b>\n<ol>\n');
 });
