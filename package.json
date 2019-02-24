@@ -9,7 +9,7 @@
     "serve": "http-server .",
     "test": "jest --coverage",
     "clean": "node ./automation/clean.js",
-    "lint": "eslint . --fix --ext .html,.js",
+    "lint": "eslint . --fix",
     "integrate": "npm run clean && npm run lint && npm run test && npm run build:docs && npm run copy:readme"
   },
   "repository": {

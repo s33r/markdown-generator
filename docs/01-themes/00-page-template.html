@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Templates - Markdown Generator</title>
+    <meta name="generator" content="@aaron-cw/markdown-generator v(1.0.3)">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          integrity="sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g="
+          crossorigin="anonymous" />
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+            integrity="sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0="
+            crossorigin="anonymous">
+    </script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/default.min.css"
+          integrity="sha256-Zd1icfZ72UBmsId/mUcagrmN7IN5Qkrvh75ICHIQVTk="
+          crossorigin="anonymous" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"
+            integrity="sha256-sNPiigbfSkqUzMc5rgrdztLnneCMAp6W9wetJUZu9Zw="
+            crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.5/lunr.min.js"
+            integrity="sha256-uScRgGrInD2VnPNpjmlQtB2XRVLczyyZvrTkYi+e31U="
+            crossorigin="anonymous">
+    </script>
+
+    <style>
+        h2:first-of-type {
+            margin-top:0;
+        }
+
+        hr {
+            border: solid thin #26a69a;
+        }
+
+        ol {
+            list-style: none;
+        }
+
+        .nav-panel > ol, #search-results {
+            padding-left: 0;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h1>Markdown Generator</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m3 nav-panel">
+            <div class="input-field">
+                <i class="material-icons prefix">search</i>
+                <input placeholder="Search..." id="search-input" type="text" class="validate">
+                <label for="search-input">Search</label>
+
+            </div>
+            <div class="right-align">
+                <button class="waves-effect waves-light btn-small" id="clear-button">Clear</button>
+                <button class="waves-effect waves-light btn-small" id="search-button">Search</button>
+            </div>
+            <ol id="search-results"></ol>
+            <hr/>
+            <ol><li><a href="../index.html">Documentation</a>
+<ol>
+<li><a href="../00-options.html">Configuration Options</a></li>
+<li><b><a href="./index.html">About Themes</a></b>
+<ol>
+<li><b>Page Templates</b></li>
+<li><a href="./01-html-templates.html">HTML Templates</a></li>
+</ol>
+</li><li><a href="../02-build.html">Build</a></li>
+</ol>
+</li></ol>
+        </div>
+        <div class="col s12 m9">
+            <h2 id="page-templates">
+Page Templates
+</h2><p class="flow-text">The page template defines the basic html page. Its the last template to be rendered</p><p class="flow-text">The template has access to the following variables:</p><table class="responsive-table striped">
+    <thead>
+        <tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+
+    </thead>
+    <tbody>
+        <tr>
+<td>generator</td>
+<td>The value to put in the meta generator element.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>The site&#39;s title.</td>
+</tr>
+<tr>
+<td>searchIndex</td>
+<td>The JavaScript object that contains the compiled search index.</td>
+</tr>
+<tr>
+<td>node</td>
+<td>The node contains information about the specific markdown file. See below for more information.</td>
+</tr>
+<tr>
+<td>node.id</td>
+<td>The file id. Used to create the search index and map search results.</td>
+</tr>
+<tr>
+<td>node.data</td>
+<td>The rendered HTML</td>
+</tr>
+<tr>
+<td>node.meta</td>
+<td>An object that contains meta information about the current document. This object id populated from the markdown documents YAML front matter.</td>
+</tr>
+<tr>
+<td>node.meta.title</td>
+<td>The title of the current document.</td>
+</tr>
+<tr>
+<td>node.themeLocation</td>
+<td>The relative path to the theme folder.</td>
+</tr>
+<tr>
+<td>node.navigation</td>
+<td>Generated HTML that contains the a navigation menu for the site.</td>
+</tr>
+<tr>
+<td>node.fileLinkIndex</td>
+<td>An object that maps search results to specific documents.</td>
+</tr>
+
+    </tbody>
+</table>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+
+<script>
+    const fileLinkIndex = {"1":{"href":"../00-options.html","id":1,"title":"Configuration Options"},"3":{"href":"./00-page-template.html","id":3,"title":"Page Templates"},"4":{"href":"./01-html-templates.html","id":4,"title":"HTML Templates"},"5":{"href":"./index.html","id":5,"title":"About Themes"},"6":{"href":"../02-build.html","id":6,"title":"Build"},"7":{"href":"../index.html","id":7,"title":"Documentation"}};
+    const searchIndex = {"version":"2.3.5","fields":["content","title"],"fieldVectors":[["content/1",[0,0.31,1,1.979,2,1.125,3,0.568,4,1.979,5,0.891,6,0.568,7,0.891,8,1.125,9,1.46,10,1.979,11,1.979,12,0.891,13,1.125,14,1.979,15,2.499,16,1.294,17,1.125,18,0.786,19,0.786,20,1.979,21,1.979,22,1.323,23,0.891,24,1.979,25,0.891,26,1.979,27,1.979,28,0.31,29,1.323,30,1.979,31,1.979,32,1.323,33,1.323,34,0.429,35,1.979,36,1.979,37,1.979,38,2.877,39,0.132,40,1.979,41,0.391,42,0.12,43,1.67,44,1.67,45,1.67,46,2.499,47,1.979,48,1.979,49,0.891,50,1.979,51,1.979,52,1.979,53,1.979,54,1.979,55,1.979,56,1.979,57,0.891,58,1.979,59,1.979,60,0.095,61,1.979,62,1.979,63,1.323,64,1.979,65,1.979,66,1.979,67,1.979]],["title/1",[2,0.61,3,0.389]],["content/3",[0,0.286,5,0.823,6,0.681,7,0.823,8,1.069,9,1.473,12,0.823,13,1.069,16,1.378,18,0.681,19,0.681,25,0.823,28,0.286,29,1.222,34,0.286,39,0.139,41,0.286,42,0.114,43,1.222,44,1.222,45,1.222,60,0.114,68,1.829,69,1.187,70,0.823,71,0.681,72,1.222,73,1.829,74,1.829,75,1.829,76,1.222,77,1.222,78,1.222,79,1.222,80,1.829,81,1.829,82,1.829,83,2.375,84,0.823,85,1.829,86,1.829,87,1.829,88,1.829,89,1.829,90,1.867,91,1.257,92,1.222,93,2.793,94,1.829,95,1.829,96,1.222,97,2.375,98,1.588,99,1.829,100,1.829,101,1.588,102,1.222,103,1.829,104,2.375,105,1.829,106,1.829,107,1.829,108,1.829,109,2.375,110,2.375,111,1.069,112,1.829,113,1.829,114,1.829,115,1.829,116,1.829,117,1.829,118,1.829,119,1.829,120,0.823,121,0.823,122,1.829,123,1.829,124,1.829,125,1.829,126,1.829,127,1.829,128,1.222,129,1.829]],["title/3",[39,0.065,69,0.61]],["content/4",[0,0.124,5,1.289,6,0.85,7,1.289,8,1.397,9,1.477,12,1.289,13,1.397,16,1.318,25,0.576,28,0.253,32,1.08,33,1.08,34,0.452,39,0.151,41,0.456,42,0.078,60,0.15,71,0.891,76,1.915,77,1.915,78,1.915,79,1.915,91,0.355,101,0.528,130,0.79,131,0.79,132,0.79,133,0.79,134,1.309,135,0.528,136,1.243,137,1.281,138,0.355,139,1.281,140,1.807,141,0.79,142,0.79,143,0.79,144,0.79,145,0.79,146,0.79,147,0.79,148,1.859,149,2.839,150,0.79,151,0.79,152,0.79,153,2.55,154,0.79,155,0.79,156,0.79,157,0.79,158,0.79,159,0.79,160,1.08,161,0.79,162,0.79,163,0.79,164,1.616,165,0.79,166,0.79,167,0.79,168,0.79,169,0.79,170,0.79,171,0.79,172,0.79,173,0.79,174,0.79,175,1.281,176,0.79,177,0.79,178,0.79,179,0.79,180,0.79,181,0.79,182,0.528,183,0.528,184,0.528,185,0.79,186,0.79,187,0.79,188,1.08,189,1.859,190,0.79,191,0.528,192,1.281,193,1.281,194,1.281,195,1.281,196,0.79,197,0.79,198,0.79,199,0.79,200,0.79,201,0.79,202,0.79,203,0.79,204,0.79,205,0.79,206,0.79,207,0.79,208,0.79,209,0.79,210,0.79,211,0.79,212,0.79,213,0.79,214,0.79,215,0.79,216,0.79,217,0.79,218,0.79,219,0.79,220,0.79,221,0.79,222,0.79,223,0.79,224,0.79,225,1.281,226,1.08,227,1.281,228,0.79,229,0.79,230,0.528,231,0.79,232,1.281,233,0.79,234,0.79,235,0.79,236,0.79,237,1.616,238,0.79,239,1.616,240,0.79,241,0.79,242,0.79,243,0.528,244,0.79,245,0.79,246,0.79,247,0.79,248,0.355,249,0.79,250,0.79,251,0.79,252,0.79,253,0.79,254,0.79,255,1.859,256,2.044,257,0.79,258,0.79,259,0.79,260,0.79,261,0.79,262,0.79,263,0.79,264,0.79,265,0.79,266,0.79,267,0.79,268,1.281,269,1.281,270,1.281,271,1.281,272,0.79,273,0.79,274,0.79,275,0.79,276,1.281,277,1.281,278,0.79,279,0.79,280,0.79,281,0.79,282,1.281,283,0.79,284,0.79,285,1.281,286,1.616,287,0.79,288,0.79,289,0.79,290,0.79,291,0.79,292,0.79,293,0.79,294,0.79]],["title/4",[39,0.065,42,0.065]],["content/5",[0,0.261,3,0.772,6,0.477,17,1.133,18,0.64,19,0.847,28,0.261,34,0.261,39,0.129,41,0.349,42,0.121,49,1.3,57,1.263,60,0.142,63,1.112,69,1.004,70,0.749,71,0.772,72,1.112,84,0.749,90,1.492,91,0.749,92,1.112,96,1.112,98,1.112,102,1.112,120,0.749,121,1.404,134,1.004,135,1.112,138,0.749,160,1.112,183,1.492,188,1.112,226,1.112,230,1.112,243,1.492,248,0.749,295,1.664,296,1.112,297,1.664,298,1.664,299,1.664,300,1.664,301,1.664,302,1.664,303,2.232,304,1.664,305,1.664,306,1.664,307,1.664,308,1.664,309,1.664,310,1.664,311,1.664,312,1.664,313,1.664,314,1.664,315,1.664,316,1.683,317,1.664,318,1.664,319,2.232,320,1.664,321,1.664,322,1.664,323,1.683,324,1.664,325,1.664,326,1.664,327,1.664,328,1.664,329,1.492,330,2.031,331,1.664,332,1.664,333,1.664,334,1.664,335,1.664,336,1.664,337,1.664,338,1.664,339,1.664,340,1.664,341,1.492,342,1.664,343,1.664,344,1.664,345,1.664,346,1.664,347,1.664,348,1.112,349,1.664,350,1.112,351,1.112,352,1.664,353,1.112,354,1.664,355,1.664,356,1.112,357,1.664,358,1.664,359,1.664,360,1.664,361,1.664,362,1.664,363,1.664,364,1.664,365,1.664,366,1.664,367,1.664,368,2.232,369,2.232,370,1.664,371,2.232,372,1.664,373,1.664,374,1.664,375,1.664,376,1.664,377,1.664,378,1.664]],["title/5",[121,0.803]],["content/6",[0,0.376,23,1.081,60,0.148,70,1.265,111,1.341,140,1.879,379,2.402,380,1.265,381,1.606,382,2.402,383,2.402,384,2.981,385,2.402,386,2.402,387,2.402,388,2.402,389,2.402,390,2.402,391,2.402]],["title/6",[380,0.803]],["content/7",[2,0.805,3,0.671,17,1.053,18,0.824,19,0.749,22,1.565,23,1.053,28,0.366,34,0.28,41,0.366,42,0.086,49,1.053,57,0.805,60,0.151,71,0.513,84,1.174,120,0.805,128,1.195,134,1.053,136,1.195,138,1.053,182,1.195,184,1.195,191,1.195,248,0.805,296,1.195,316,1.745,323,1.921,329,1.195,330,2.008,341,1.745,348,1.195,350,1.195,351,1.195,353,1.195,356,1.195,380,0.805,381,1.195,392,2.341,393,1.788,394,2.341,395,1.788,396,1.788,397,1.788,398,1.788,399,1.788,400,1.788,401,1.788,402,1.788,403,1.788,404,1.788,405,1.788,406,1.788,407,1.788,408,1.788,409,1.788,410,1.788,411,1.788,412,2.341,413,1.788,414,1.788,415,1.788,416,2.341,417,1.788,418,1.788,419,1.788,420,1.788,421,1.788,422,1.788,423,1.788,424,1.788,425,1.788,426,1.788,427,1.788,428,1.788,429,1.788,430,1.788,431,1.788,432,1.788,433,1.788,434,1.788,435,1.788,436,1.788,437,2.341,438,1.788,439,1.788,440,1.788,441,1.788,442,1.788,443,1.788,444,1.788,445,1.788,446,2.341,447,2.341,448,1.788,449,1.788,450,1.788,451,1.788,452,1.788,453,1.788,454,1.788,455,1.788,456,1.788,457,1.788,458,2.341,459,1.788,460,1.788]],["title/7",[111,0.803]]],"invertedIndex":[["",{"_index":330,"content":{"5":{},"7":{}},"title":{}}],["1",{"_index":294,"content":{"4":{}},"title":{}}],["1.</td",{"_index":170,"content":{"4":{}},"title":{}}],["1</p><p",{"_index":166,"content":{"4":{}},"title":{}}],["39;../../node_modules/normalize.css/normalize.css&#39",{"_index":340,"content":{"5":{}},"title":{}}],["39;../deploy/docs&#39",{"_index":429,"content":{"7":{}},"title":{}}],["39;../documentation&#39",{"_index":428,"content":{"7":{}},"title":{}}],["39;../templates/page.tpl.html&#39",{"_index":50,"content":{"1":{}},"title":{}}],["39;./heading.tpl.html&#39",{"_index":337,"content":{"5":{}},"title":{}}],["39;./index.css&#39",{"_index":339,"content":{"5":{}},"title":{}}],["39;./page.tpl.html&#39",{"_index":333,"content":{"5":{}},"title":{}}],["39;./paragraph.tpl.html&#39",{"_index":336,"content":{"5":{}},"title":{}}],["39;./table.tpl.html&#39",{"_index":334,"content":{"5":{}},"title":{}}],["39;default",{"_index":430,"content":{"7":{}},"title":{}}],["39;markdown",{"_index":355,"content":{"5":{}},"title":{}}],["aaron",{"_index":415,"content":{"7":{}},"title":{}}],["abil",{"_index":453,"content":{"7":{}},"title":{}}],["absolut",{"_index":424,"content":{"7":{}},"title":{}}],["access",{"_index":76,"content":{"3":{},"4":{}},"title":{}}],["addit",{"_index":304,"content":{"5":{}},"title":{}}],["align",{"_index":247,"content":{"4":{}},"title":{}}],["alt",{"_index":292,"content":{"4":{}},"title":{}}],["alt=\"build",{"_index":398,"content":{"7":{}},"title":{}}],["anchor",{"_index":274,"content":{"4":{}},"title":{}}],["array",{"_index":362,"content":{"5":{}},"title":{}}],["attribut",{"_index":285,"content":{"4":{}},"title":{}}],["avail",{"_index":184,"content":{"4":{},"7":{}},"title":{}}],["basic",{"_index":73,"content":{"3":{}},"title":{}}],["below",{"_index":44,"content":{"1":{},"3":{}},"title":{}}],["below.</p><p",{"_index":192,"content":{"4":{}},"title":{}}],["best",{"_index":310,"content":{"5":{}},"title":{}}],["block",{"_index":137,"content":{"4":{}},"title":{}}],["block</td",{"_index":141,"content":{"4":{}},"title":{}}],["blockquotes.</p><p",{"_index":152,"content":{"4":{}},"title":{}}],["bodi",{"_index":194,"content":{"4":{}},"title":{}}],["box",{"_index":211,"content":{"4":{}},"title":{}}],["breaks.</p><p",{"_index":266,"content":{"4":{}},"title":{}}],["build",{"_index":380,"content":{"6":{},"7":{}},"title":{"6":{}}}],["build:docs</code></p><h2",{"_index":385,"content":{"6":{}},"title":{}}],["cell",{"_index":237,"content":{"4":{}},"title":{}}],["cell.</td",{"_index":239,"content":{"4":{}},"title":{}}],["center",{"_index":249,"content":{"4":{}},"title":{}}],["cheatsheet",{"_index":444,"content":{"7":{}},"title":{}}],["cheatsheet%5d\">https://github.com/adam",{"_index":448,"content":{"7":{}},"title":{}}],["cheatsheet]</a></p><p",{"_index":449,"content":{"7":{}},"title":{}}],["checkbox",{"_index":207,"content":{"4":{}},"title":{}}],["checked.</td",{"_index":212,"content":{"4":{}},"title":{}}],["ci.org/s33r/markdown",{"_index":394,"content":{"7":{}},"title":{}}],["class=\"flow",{"_index":60,"content":{"1":{},"3":{},"4":{},"5":{},"6":{},"7":{}},"title":{}}],["class=\"languag",{"_index":316,"content":{"5":{},"7":{}},"title":{}}],["class=\"respons",{"_index":5,"content":{"1":{},"3":{},"4":{}},"title":{}}],["code",{"_index":136,"content":{"4":{},"7":{}},"title":{}}],["code>./theme</cod",{"_index":363,"content":{"5":{}},"title":{}}],["code></pr",{"_index":341,"content":{"5":{},"7":{}},"title":{}}],["code></td",{"_index":51,"content":{"1":{}},"title":{}}],["code>npm",{"_index":390,"content":{"6":{}},"title":{}}],["code>slugger.slug(text)</code></td",{"_index":177,"content":{"4":{}},"title":{}}],["code>templatelocations</cod",{"_index":357,"content":{"5":{}},"title":{}}],["code>themefiles</cod",{"_index":361,"content":{"5":{}},"title":{}}],["column",{"_index":222,"content":{"4":{}},"title":{}}],["compil",{"_index":92,"content":{"3":{},"5":{}},"title":{}}],["configur",{"_index":3,"content":{"1":{},"5":{},"7":{}},"title":{"1":{}}}],["const",{"_index":348,"content":{"5":{},"7":{}},"title":{}}],["contain",{"_index":91,"content":{"3":{},"4":{},"5":{}},"title":{}}],["content",{"_index":226,"content":{"4":{},"5":{}},"title":{}}],["content</td",{"_index":234,"content":{"4":{}},"title":{}}],["control",{"_index":243,"content":{"4":{},"5":{}},"title":{}}],["copi",{"_index":56,"content":{"1":{}},"title":{}}],["creat",{"_index":102,"content":{"3":{},"5":{}},"title":{}}],["current",{"_index":110,"content":{"3":{}},"title":{}}],["cw/markdown",{"_index":416,"content":{"7":{}},"title":{}}],["default",{"_index":359,"content":{"5":{}},"title":{}}],["defin",{"_index":72,"content":{"3":{},"5":{}},"title":{}}],["delet",{"_index":270,"content":{"4":{}},"title":{}}],["detail",{"_index":191,"content":{"4":{},"7":{}},"title":{}}],["details.</td",{"_index":46,"content":{"1":{}},"title":{}}],["dev</code></pr",{"_index":418,"content":{"7":{}},"title":{}}],["develop",{"_index":405,"content":{"7":{}},"title":{}}],["directori",{"_index":17,"content":{"1":{},"5":{},"7":{}},"title":{}}],["directory.</td",{"_index":58,"content":{"1":{}},"title":{}}],["disk.</td",{"_index":36,"content":{"1":{}},"title":{}}],["document",{"_index":111,"content":{"3":{},"6":{}},"title":{"7":{}}}],["document.</td",{"_index":117,"content":{"3":{}},"title":{}}],["documentation&#39",{"_index":431,"content":{"7":{}},"title":{}}],["documentation</td",{"_index":27,"content":{"1":{}},"title":{}}],["documents.</td",{"_index":129,"content":{"3":{}},"title":{}}],["each",{"_index":163,"content":{"4":{}},"title":{}}],["easili",{"_index":342,"content":{"5":{}},"title":{}}],["element",{"_index":220,"content":{"4":{}},"title":{}}],["element.</td",{"_index":85,"content":{"3":{}},"title":{}}],["em>not",{"_index":280,"content":{"4":{}},"title":{}}],["em>us",{"_index":423,"content":{"7":{}},"title":{}}],["emphas",{"_index":259,"content":{"4":{}},"title":{}}],["end",{"_index":282,"content":{"4":{}},"title":{}}],["entri",{"_index":202,"content":{"4":{}},"title":{}}],["environ",{"_index":346,"content":{"5":{}},"title":{}}],["environment.output.doc",{"_index":354,"content":{"5":{}},"title":{}}],["environment.repository.document",{"_index":352,"content":{"5":{}},"title":{}}],["example.j",{"_index":458,"content":{"7":{}},"title":{}}],["example:</p><pre><cod",{"_index":328,"content":{"5":{}},"title":{}}],["export",{"_index":326,"content":{"5":{}},"title":{}}],["extens",{"_index":452,"content":{"7":{}},"title":{}}],["file",{"_index":19,"content":{"1":{},"3":{},"5":{},"7":{}},"title":{}}],["files.</p><blockquot",{"_index":401,"content":{"7":{}},"title":{}}],["fine",{"_index":298,"content":{"5":{}},"title":{}}],["flag",{"_index":242,"content":{"4":{}},"title":{}}],["flavor",{"_index":440,"content":{"7":{}},"title":{}}],["folder.</td",{"_index":122,"content":{"3":{}},"title":{}}],["follow",{"_index":77,"content":{"3":{},"4":{}},"title":{}}],["format",{"_index":437,"content":{"7":{}},"title":{}}],["front",{"_index":114,"content":{"3":{}},"title":{}}],["full",{"_index":433,"content":{"7":{}},"title":{}}],["function",{"_index":174,"content":{"4":{}},"title":{}}],["gener",{"_index":84,"content":{"3":{},"5":{},"7":{}},"title":{}}],["generator\"><img",{"_index":395,"content":{"7":{}},"title":{}}],["generator\">github",{"_index":409,"content":{"7":{}},"title":{}}],["generator&#39",{"_index":356,"content":{"5":{},"7":{}},"title":{}}],["generator.svg?branch=mast",{"_index":397,"content":{"7":{}},"title":{}}],["generator</p><pre><cod",{"_index":345,"content":{"5":{}},"title":{}}],["give",{"_index":297,"content":{"5":{}},"title":{}}],["grain",{"_index":299,"content":{"5":{}},"title":{}}],["gt",{"_index":369,"content":{"5":{}},"title":{}}],["h1",{"_index":162,"content":{"4":{}},"title":{}}],["h2",{"_index":0,"content":{"1":{},"3":{},"4":{},"5":{},"6":{}},"title":{}}],["h2><h3",{"_index":131,"content":{"4":{}},"title":{}}],["h2><p",{"_index":70,"content":{"3":{},"5":{},"6":{}},"title":{}}],["h2><tabl",{"_index":4,"content":{"1":{}},"title":{}}],["h3",{"_index":419,"content":{"7":{}},"title":{}}],["h3><p",{"_index":134,"content":{"4":{},"5":{},"7":{}},"title":{}}],["h3><pre><cod",{"_index":413,"content":{"7":{}},"title":{}}],["head",{"_index":160,"content":{"4":{},"5":{}},"title":{}}],["header",{"_index":225,"content":{"4":{}},"title":{}}],["heading.tpl.html",{"_index":318,"content":{"5":{}},"title":{}}],["heading</td",{"_index":167,"content":{"4":{}},"title":{}}],["here/wiki/markdown",{"_index":447,"content":{"7":{}},"title":{}}],["highest",{"_index":169,"content":{"4":{}},"title":{}}],["highlighters.</td",{"_index":146,"content":{"4":{}},"title":{}}],["horizont",{"_index":180,"content":{"4":{}},"title":{}}],["href=\"./00",{"_index":372,"content":{"5":{}},"title":{}}],["href=\"./01",{"_index":375,"content":{"5":{}},"title":{}}],["href=\"./options.html\">here</a>.</p><h3",{"_index":435,"content":{"7":{}},"title":{}}],["href=\"./templates.html\">templates</a",{"_index":301,"content":{"5":{}},"title":{}}],["href=\"https://github.com/adam",{"_index":445,"content":{"7":{}},"title":{}}],["href=\"https://github.com/markedjs/marked\">marked</a",{"_index":443,"content":{"7":{}},"title":{}}],["href=\"https://github.com/s33r/markdown",{"_index":408,"content":{"7":{}},"title":{}}],["href=\"https://github.github.com/gfm/\">github",{"_index":439,"content":{"7":{}},"title":{}}],["href=\"https://lodash.com/docs/4.17.11#template\">lodash",{"_index":366,"content":{"5":{}},"title":{}}],["href=\"https://travi",{"_index":393,"content":{"7":{}},"title":{}}],["html",{"_index":42,"content":{"1":{},"3":{},"4":{},"5":{},"7":{}},"title":{"4":{}}}],["html</em>.</td",{"_index":284,"content":{"4":{}},"title":{}}],["html</td",{"_index":107,"content":{"3":{}},"title":{}}],["id",{"_index":101,"content":{"3":{},"4":{}},"title":{}}],["id=\"about",{"_index":295,"content":{"5":{}},"title":{}}],["id=\"build",{"_index":379,"content":{"6":{}},"title":{}}],["id=\"configur",{"_index":1,"content":{"1":{}},"title":{}}],["id=\"creat",{"_index":308,"content":{"5":{}},"title":{}}],["id=\"html",{"_index":130,"content":{"4":{}},"title":{}}],["id=\"instal",{"_index":411,"content":{"7":{}},"title":{}}],["id=\"markdown",{"_index":436,"content":{"7":{}},"title":{}}],["id=\"pag",{"_index":68,"content":{"3":{}},"title":{}}],["id=\"templ",{"_index":365,"content":{"5":{}},"title":{}}],["id=\"templatesblockquot",{"_index":150,"content":{"4":{}},"title":{}}],["id=\"templatesbr",{"_index":263,"content":{"4":{}},"title":{}}],["id=\"templatescheckbox",{"_index":205,"content":{"4":{}},"title":{}}],["id=\"templatescod",{"_index":132,"content":{"4":{}},"title":{}}],["id=\"templatescodespan",{"_index":260,"content":{"4":{}},"title":{}}],["id=\"templatesdel",{"_index":268,"content":{"4":{}},"title":{}}],["id=\"templatesem",{"_index":257,"content":{"4":{}},"title":{}}],["id=\"templateshead",{"_index":158,"content":{"4":{}},"title":{}}],["id=\"templateshr",{"_index":178,"content":{"4":{}},"title":{}}],["id=\"templateshtml",{"_index":155,"content":{"4":{}},"title":{}}],["id=\"templatesimag",{"_index":287,"content":{"4":{}},"title":{}}],["id=\"templateslink",{"_index":272,"content":{"4":{}},"title":{}}],["id=\"templateslist",{"_index":186,"content":{"4":{}},"title":{}}],["id=\"templateslistitem",{"_index":200,"content":{"4":{}},"title":{}}],["id=\"templatesparagraph",{"_index":213,"content":{"4":{}},"title":{}}],["id=\"templatesstrong",{"_index":252,"content":{"4":{}},"title":{}}],["id=\"templatest",{"_index":217,"content":{"4":{}},"title":{}}],["id=\"templatestablecel",{"_index":235,"content":{"4":{}},"title":{}}],["id=\"templatestablerow",{"_index":228,"content":{"4":{}},"title":{}}],["id=\"test",{"_index":386,"content":{"6":{}},"title":{}}],["id=\"usag",{"_index":420,"content":{"7":{}},"title":{}}],["image&#39;",{"_index":289,"content":{"4":{}},"title":{}}],["image.</td",{"_index":293,"content":{"4":{}},"title":{}}],["import",{"_index":198,"content":{"4":{}},"title":{}}],["incld",{"_index":454,"content":{"7":{}},"title":{}}],["includ",{"_index":303,"content":{"5":{}},"title":{}}],["increment",{"_index":165,"content":{"4":{}},"title":{}}],["index",{"_index":103,"content":{"3":{}},"title":{}}],["index.</td",{"_index":94,"content":{"3":{}},"title":{}}],["index.css",{"_index":320,"content":{"5":{}},"title":{}}],["index.j",{"_index":319,"content":{"5":{}},"title":{}}],["individu",{"_index":189,"content":{"4":{}},"title":{}}],["inform",{"_index":97,"content":{"3":{}},"title":{}}],["information.</td",{"_index":99,"content":{"3":{}},"title":{}}],["inlin",{"_index":455,"content":{"7":{}},"title":{}}],["inline.</p><p",{"_index":262,"content":{"4":{}},"title":{}}],["inputloc",{"_index":351,"content":{"5":{},"7":{}},"title":{}}],["instal",{"_index":412,"content":{"7":{}},"title":{}}],["interactive).</p><p",{"_index":209,"content":{"4":{}},"title":{}}],["item",{"_index":190,"content":{"4":{}},"title":{}}],["item</td",{"_index":204,"content":{"4":{}},"title":{}}],["javascript",{"_index":89,"content":{"3":{}},"title":{}}],["javascript\">const",{"_index":329,"content":{"5":{},"7":{}},"title":{}}],["javascript?./inlin",{"_index":460,"content":{"7":{}},"title":{}}],["keep",{"_index":311,"content":{"5":{}},"title":{}}],["languag",{"_index":144,"content":{"4":{}},"title":{}}],["last",{"_index":74,"content":{"3":{}},"title":{}}],["left",{"_index":250,"content":{"4":{}},"title":{}}],["let",{"_index":302,"content":{"5":{}},"title":{}}],["level",{"_index":164,"content":{"4":{}},"title":{}}],["li><a",{"_index":371,"content":{"5":{}},"title":{}}],["line",{"_index":265,"content":{"4":{}},"title":{}}],["link",{"_index":281,"content":{"4":{}},"title":{}}],["link&#39;",{"_index":278,"content":{"4":{}},"title":{}}],["link.</td",{"_index":286,"content":{"4":{}},"title":{}}],["links.</p><p",{"_index":275,"content":{"4":{}},"title":{}}],["list",{"_index":188,"content":{"4":{},"5":{}},"title":{}}],["list.</p><p",{"_index":203,"content":{"4":{}},"title":{}}],["list.</td",{"_index":195,"content":{"4":{}},"title":{}}],["load",{"_index":62,"content":{"1":{}},"title":{}}],["locat",{"_index":53,"content":{"1":{}},"title":{}}],["located.</td",{"_index":20,"content":{"1":{}},"title":{}}],["look",{"_index":313,"content":{"5":{}},"title":{}}],["lt",{"_index":368,"content":{"5":{}},"title":{}}],["map",{"_index":104,"content":{"3":{}},"title":{}}],["markdown",{"_index":18,"content":{"1":{},"3":{},"5":{},"7":{}},"title":{}}],["markdown\">`````javascript?./inlin",{"_index":457,"content":{"7":{}},"title":{}}],["markdown</a",{"_index":441,"content":{"7":{}},"title":{}}],["markdowngener",{"_index":350,"content":{"5":{},"7":{}},"title":{}}],["markdowngenerator(configur",{"_index":432,"content":{"7":{}},"title":{}}],["matter.</td",{"_index":115,"content":{"3":{}},"title":{}}],["md",{"_index":283,"content":{"4":{}},"title":{}}],["menu",{"_index":126,"content":{"3":{}},"title":{}}],["meta",{"_index":83,"content":{"3":{}},"title":{}}],["mix",{"_index":343,"content":{"5":{}},"title":{}}],["modul",{"_index":324,"content":{"5":{}},"title":{}}],["module.export",{"_index":332,"content":{"5":{}},"title":{}}],["more",{"_index":45,"content":{"1":{},"3":{}},"title":{}}],["navig",{"_index":125,"content":{"3":{}},"title":{}}],["node",{"_index":96,"content":{"3":{},"5":{}},"title":{}}],["non",{"_index":450,"content":{"7":{}},"title":{}}],["note",{"_index":161,"content":{"4":{}},"title":{}}],["object",{"_index":90,"content":{"3":{},"5":{}},"title":{}}],["on",{"_index":248,"content":{"4":{},"5":{},"7":{}},"title":{}}],["option",{"_index":2,"content":{"1":{},"7":{}},"title":{"1":{}}}],["options.</em></p><p",{"_index":425,"content":{"7":{}},"title":{}}],["order",{"_index":197,"content":{"4":{}},"title":{}}],["outer",{"_index":219,"content":{"4":{}},"title":{}}],["output",{"_index":57,"content":{"1":{},"5":{},"7":{}},"title":{}}],["output.</td",{"_index":24,"content":{"1":{}},"title":{}}],["outputloc",{"_index":353,"content":{"5":{},"7":{}},"title":{}}],["over",{"_index":66,"content":{"1":{}},"title":{}}],["overrid",{"_index":358,"content":{"5":{}},"title":{}}],["p",{"_index":323,"content":{"5":{},"7":{}},"title":{}}],["p/markdown",{"_index":446,"content":{"7":{}},"title":{}}],["p><h3",{"_index":364,"content":{"5":{}},"title":{}}],["p><p",{"_index":138,"content":{"4":{},"5":{},"7":{}},"title":{}}],["page",{"_index":69,"content":{"3":{},"5":{}},"title":{"3":{}}}],["paragraph",{"_index":335,"content":{"5":{}},"title":{}}],["paragraph.</td",{"_index":216,"content":{"4":{}},"title":{}}],["paragraph.tpl.html</code></pr",{"_index":322,"content":{"5":{}},"title":{}}],["paragraphs.</p><p",{"_index":215,"content":{"4":{}},"title":{}}],["pars",{"_index":442,"content":{"7":{}},"title":{}}],["partial",{"_index":327,"content":{"5":{}},"title":{}}],["pass",{"_index":344,"content":{"5":{}},"title":{}}],["path",{"_index":120,"content":{"3":{},"5":{},"7":{}},"title":{}}],["path.resolve(__dirnam",{"_index":49,"content":{"1":{},"5":{},"7":{}},"title":{}}],["popul",{"_index":112,"content":{"3":{}},"title":{}}],["possibl",{"_index":360,"content":{"5":{}},"title":{}}],["pre><cod",{"_index":459,"content":{"7":{}},"title":{}}],["preced",{"_index":65,"content":{"1":{}},"title":{}}],["product",{"_index":406,"content":{"7":{}},"title":{}}],["program",{"_index":143,"content":{"4":{}},"title":{}}],["put",{"_index":82,"content":{"3":{}},"title":{}}],["quote</td",{"_index":154,"content":{"4":{}},"title":{}}],["ready.</p></blockquot",{"_index":407,"content":{"7":{}},"title":{}}],["rel",{"_index":119,"content":{"3":{}},"title":{}}],["render",{"_index":34,"content":{"1":{},"3":{},"4":{},"5":{},"7":{}},"title":{}}],["render.</td",{"_index":256,"content":{"4":{}},"title":{}}],["rendered</p><p",{"_index":75,"content":{"3":{}},"title":{}}],["repository</a></p><h3",{"_index":410,"content":{"7":{}},"title":{}}],["require(&#39;./environment&#39",{"_index":347,"content":{"5":{}},"title":{}}],["require(&#39;./theme&#39",{"_index":349,"content":{"5":{}},"title":{}}],["require(&#39;@aaron",{"_index":427,"content":{"7":{}},"title":{}}],["require(&#39;path&#39",{"_index":331,"content":{"5":{}},"title":{}}],["result",{"_index":128,"content":{"3":{},"7":{}},"title":{}}],["results.</td",{"_index":105,"content":{"3":{}},"title":{}}],["right.</td",{"_index":251,"content":{"4":{}},"title":{}}],["row",{"_index":221,"content":{"4":{}},"title":{}}],["row&#39;",{"_index":233,"content":{"4":{}},"title":{}}],["row.</p><p",{"_index":231,"content":{"4":{}},"title":{}}],["rules.</p><p",{"_index":181,"content":{"4":{}},"title":{}}],["run",{"_index":384,"content":{"6":{}},"title":{}}],["run:</p><p",{"_index":382,"content":{"6":{}},"title":{}}],["save",{"_index":417,"content":{"7":{}},"title":{}}],["script",{"_index":325,"content":{"5":{}},"title":{}}],["scripts.</p><h3",{"_index":307,"content":{"5":{}},"title":{}}],["search",{"_index":93,"content":{"3":{}},"title":{}}],["see",{"_index":43,"content":{"1":{},"3":{}},"title":{}}],["set",{"_index":434,"content":{"7":{}},"title":{}}],["shell\">npm",{"_index":414,"content":{"7":{}},"title":{}}],["singl",{"_index":230,"content":{"4":{},"5":{}},"title":{}}],["site",{"_index":23,"content":{"1":{},"6":{},"7":{}},"title":{}}],["site&#39;",{"_index":86,"content":{"3":{}},"title":{}}],["site.</td",{"_index":29,"content":{"1":{},"3":{}},"title":{}}],["so:</p><pre><cod",{"_index":456,"content":{"7":{}},"title":{}}],["softwar",{"_index":403,"content":{"7":{}},"title":{}}],["someth",{"_index":314,"content":{"5":{}},"title":{}}],["sourc",{"_index":290,"content":{"4":{}},"title":{}}],["specif",{"_index":98,"content":{"3":{},"5":{}},"title":{}}],["specifi",{"_index":223,"content":{"4":{}},"title":{}}],["src=\"https://travi",{"_index":396,"content":{"7":{}},"title":{}}],["standard",{"_index":451,"content":{"7":{}},"title":{}}],["static",{"_index":22,"content":{"1":{},"7":{}},"title":{}}],["status\"></a></p><hr",{"_index":399,"content":{"7":{}},"title":{}}],["still",{"_index":404,"content":{"7":{}},"title":{}}],["strikethrough",{"_index":271,"content":{"4":{}},"title":{}}],["string",{"_index":40,"content":{"1":{}},"title":{}}],["strings.</em></p",{"_index":67,"content":{"1":{}},"title":{}}],["stripe",{"_index":7,"content":{"1":{},"3":{},"4":{}},"title":{}}],["strong",{"_index":254,"content":{"4":{}},"title":{}}],["style",{"_index":306,"content":{"5":{}},"title":{}}],["such",{"_index":305,"content":{"5":{}},"title":{}}],["syntax",{"_index":145,"content":{"4":{}},"title":{}}],["tabl",{"_index":6,"content":{"1":{},"3":{},"4":{},"5":{}},"title":{}}],["table.</p><p",{"_index":238,"content":{"4":{}},"title":{}}],["table.</td",{"_index":227,"content":{"4":{}},"title":{}}],["table.tpl.html",{"_index":321,"content":{"5":{}},"title":{}}],["table><h3",{"_index":149,"content":{"4":{}},"title":{}}],["table><p",{"_index":59,"content":{"1":{}},"title":{}}],["take",{"_index":64,"content":{"1":{}},"title":{}}],["tbodi",{"_index":13,"content":{"1":{},"3":{},"4":{}},"title":{}}],["td",{"_index":38,"content":{"1":{}},"title":{}}],["td></td",{"_index":148,"content":{"4":{}},"title":{}}],["td><code>{pag",{"_index":48,"content":{"1":{}},"title":{}}],["td>a",{"_index":173,"content":{"4":{}},"title":{}}],["td>addit",{"_index":55,"content":{"1":{}},"title":{}}],["td>an",{"_index":109,"content":{"3":{}},"title":{}}],["td>body</td",{"_index":193,"content":{"4":{}},"title":{}}],["td>checked</td",{"_index":210,"content":{"4":{}},"title":{}}],["td>code</td",{"_index":139,"content":{"4":{}},"title":{}}],["td>content</td",{"_index":232,"content":{"4":{}},"title":{}}],["td>control",{"_index":246,"content":{"4":{}},"title":{}}],["td>default",{"_index":26,"content":{"1":{}},"title":{}}],["td>dryrun</td",{"_index":30,"content":{"1":{}},"title":{}}],["td>escaped</td",{"_index":147,"content":{"4":{}},"title":{}}],["td>false</td",{"_index":31,"content":{"1":{}},"title":{}}],["td>file",{"_index":52,"content":{"1":{}},"title":{}}],["td>flags.align</td",{"_index":245,"content":{"4":{}},"title":{}}],["td>flags.header</td",{"_index":244,"content":{"4":{}},"title":{}}],["td>flags</td",{"_index":240,"content":{"4":{}},"title":{}}],["td>gener",{"_index":124,"content":{"3":{}},"title":{}}],["td>generator</td",{"_index":80,"content":{"3":{}},"title":{}}],["td>header</td",{"_index":224,"content":{"4":{}},"title":{}}],["td>href</td",{"_index":276,"content":{"4":{}},"title":{}}],["td>html</td",{"_index":157,"content":{"4":{}},"title":{}}],["td>if",{"_index":32,"content":{"1":{},"4":{}},"title":{}}],["td>inputlocation</td",{"_index":14,"content":{"1":{}},"title":{}}],["td>lang</td",{"_index":142,"content":{"4":{}},"title":{}}],["td>level</td",{"_index":168,"content":{"4":{}},"title":{}}],["td>n/a</td",{"_index":15,"content":{"1":{}},"title":{}}],["td>node.data</td",{"_index":106,"content":{"3":{}},"title":{}}],["td>node.filelinkindex</td",{"_index":127,"content":{"3":{}},"title":{}}],["td>node.id</td",{"_index":100,"content":{"3":{}},"title":{}}],["td>node.meta.title</td",{"_index":116,"content":{"3":{}},"title":{}}],["td>node.meta</td",{"_index":108,"content":{"3":{}},"title":{}}],["td>node.navigation</td",{"_index":123,"content":{"3":{}},"title":{}}],["td>node.themelocation</td",{"_index":118,"content":{"3":{}},"title":{}}],["td>node</td",{"_index":95,"content":{"3":{}},"title":{}}],["td>object",{"_index":241,"content":{"4":{}},"title":{}}],["td>ordered</td",{"_index":196,"content":{"4":{}},"title":{}}],["td>outputlocation</td",{"_index":21,"content":{"1":{}},"title":{}}],["td>raw</td",{"_index":171,"content":{"4":{}},"title":{}}],["td>searchindex</td",{"_index":88,"content":{"3":{}},"title":{}}],["td>slugger</td",{"_index":172,"content":{"4":{}},"title":{}}],["td>start</td",{"_index":199,"content":{"4":{}},"title":{}}],["td>templatelocations</td",{"_index":47,"content":{"1":{}},"title":{}}],["td>templates</td",{"_index":37,"content":{"1":{}},"title":{}}],["td>text</td",{"_index":153,"content":{"4":{}},"title":{}}],["td>the",{"_index":16,"content":{"1":{},"3":{},"4":{}},"title":{}}],["td>themefiles</td",{"_index":54,"content":{"1":{}},"title":{}}],["td>thi",{"_index":277,"content":{"4":{}},"title":{}}],["td>title</td",{"_index":25,"content":{"1":{},"3":{},"4":{}},"title":{}}],["templat",{"_index":39,"content":{"1":{},"3":{},"4":{},"5":{}},"title":{"3":{},"4":{}}}],["template.</p><h3",{"_index":185,"content":{"4":{}},"title":{}}],["template.html\">pag",{"_index":373,"content":{"5":{}},"title":{}}],["template</a></li",{"_index":374,"content":{"5":{}},"title":{}}],["templateloc",{"_index":63,"content":{"1":{},"5":{}},"title":{}}],["templates.blockquot",{"_index":151,"content":{"4":{}},"title":{}}],["templates.br",{"_index":264,"content":{"4":{}},"title":{}}],["templates.checkbox",{"_index":206,"content":{"4":{}},"title":{}}],["templates.cod",{"_index":133,"content":{"4":{}},"title":{}}],["templates.codespan",{"_index":261,"content":{"4":{}},"title":{}}],["templates.del",{"_index":269,"content":{"4":{}},"title":{}}],["templates.em",{"_index":258,"content":{"4":{}},"title":{}}],["templates.head",{"_index":159,"content":{"4":{}},"title":{}}],["templates.hr",{"_index":179,"content":{"4":{}},"title":{}}],["templates.html",{"_index":156,"content":{"4":{}},"title":{}}],["templates.html\">html",{"_index":376,"content":{"5":{}},"title":{}}],["templates.imag",{"_index":288,"content":{"4":{}},"title":{}}],["templates.link",{"_index":273,"content":{"4":{}},"title":{}}],["templates.list",{"_index":187,"content":{"4":{}},"title":{}}],["templates.listitem",{"_index":201,"content":{"4":{}},"title":{}}],["templates.paragraph",{"_index":214,"content":{"4":{}},"title":{}}],["templates.strong",{"_index":253,"content":{"4":{}},"title":{}}],["templates.t",{"_index":218,"content":{"4":{}},"title":{}}],["templates.tablecel",{"_index":236,"content":{"4":{}},"title":{}}],["templates.tablerow",{"_index":229,"content":{"4":{}},"title":{}}],["templates</a",{"_index":367,"content":{"5":{}},"title":{}}],["templates</a></li",{"_index":377,"content":{"5":{}},"title":{}}],["test",{"_index":387,"content":{"6":{}},"title":{}}],["test</code></p",{"_index":391,"content":{"6":{}},"title":{}}],["tests:</p><p",{"_index":389,"content":{"6":{}},"title":{}}],["text",{"_index":140,"content":{"4":{},"6":{}},"title":{}}],["text\">./page.tpl.html",{"_index":317,"content":{"5":{}},"title":{}}],["text\"><a",{"_index":392,"content":{"7":{}},"title":{}}],["text\"><code>npm",{"_index":383,"content":{"6":{}},"title":{}}],["text\"><em>templ",{"_index":61,"content":{"1":{}},"title":{}}],["text\">a",{"_index":296,"content":{"5":{},"7":{}},"title":{}}],["text\">creat",{"_index":400,"content":{"7":{}},"title":{}}],["text\">it",{"_index":309,"content":{"5":{}},"title":{}}],["text\">markdown",{"_index":438,"content":{"7":{}},"title":{}}],["text\">not",{"_index":422,"content":{"7":{}},"title":{}}],["text\">templ",{"_index":135,"content":{"4":{},"5":{}},"title":{}}],["text\">th",{"_index":71,"content":{"3":{},"4":{},"5":{},"7":{}},"title":{}}],["text\">ther",{"_index":182,"content":{"4":{},"7":{}},"title":{}}],["text\">thi",{"_index":402,"content":{"7":{}},"title":{}}],["text\">to",{"_index":381,"content":{"6":{},"7":{}},"title":{}}],["text\">usage:</p><pre><cod",{"_index":426,"content":{"7":{}},"title":{}}],["text.</p><p",{"_index":255,"content":{"4":{}},"title":{}}],["th>default</th",{"_index":11,"content":{"1":{}},"title":{}}],["th>description</th",{"_index":12,"content":{"1":{},"3":{},"4":{}},"title":{}}],["th>option</th",{"_index":10,"content":{"1":{}},"title":{}}],["th>variable</th",{"_index":79,"content":{"3":{},"4":{}},"title":{}}],["thead",{"_index":8,"content":{"1":{},"3":{},"4":{}},"title":{}}],["theme",{"_index":121,"content":{"3":{},"5":{}},"title":{"5":{}}}],["themefil",{"_index":338,"content":{"5":{}},"title":{}}],["this:</p><pre><cod",{"_index":315,"content":{"5":{}},"title":{}}],["titl",{"_index":28,"content":{"1":{},"3":{},"4":{},"5":{},"7":{}},"title":{}}],["title.</td",{"_index":87,"content":{"3":{}},"title":{}}],["togeth",{"_index":312,"content":{"5":{}},"title":{}}],["tr",{"_index":9,"content":{"1":{},"3":{},"4":{}},"title":{}}],["transform",{"_index":175,"content":{"4":{}},"title":{}}],["true",{"_index":33,"content":{"1":{},"4":{}},"title":{}}],["ul",{"_index":378,"content":{"5":{}},"title":{}}],["unit",{"_index":388,"content":{"6":{}},"title":{}}],["url",{"_index":279,"content":{"4":{}},"title":{}}],["url.</td",{"_index":291,"content":{"4":{}},"title":{}}],["us",{"_index":41,"content":{"1":{},"3":{},"4":{},"5":{},"7":{}},"title":{}}],["usag",{"_index":421,"content":{"7":{}},"title":{}}],["usual",{"_index":208,"content":{"4":{}},"title":{}}],["valid",{"_index":176,"content":{"4":{}},"title":{}}],["valu",{"_index":81,"content":{"3":{}},"title":{}}],["variabl",{"_index":183,"content":{"4":{},"5":{}},"title":{}}],["variables.</p><h3",{"_index":267,"content":{"4":{}},"title":{}}],["variables.</p><ul",{"_index":370,"content":{"5":{}},"title":{}}],["variables:</p><t",{"_index":78,"content":{"3":{},"4":{}},"title":{}}],["via",{"_index":300,"content":{"5":{}},"title":{}}],["write",{"_index":35,"content":{"1":{}},"title":{}}],["yaml",{"_index":113,"content":{"3":{}},"title":{}}]],"pipeline":["stemmer"]};
+</script>
+
+<script>
+    (function initializeSearch() {
+        const lunrSearch = lunr.Index.load(searchIndex);
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const clearButton = document.getElementById('clear-button');
+        const resultsList = document.getElementById('search-results');
+
+        searchButton.addEventListener('click', event => {
+            const results = lunrSearch.search(searchInput.value)
+                .map(result => fileLinkIndex[result.ref])
+                .filter(result => !!result);
+
+            console.log(results);
+
+            resultsList.innerHTML = '';
+
+            results.forEach(result => {
+                const listElement = document.createElement('li');
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', result.href);
+                linkElement.innerText = result.title;
+
+                listElement.appendChild(linkElement);
+                resultsList.appendChild(listElement);
+            });
+
+            if(results.length <= 0) {
+                const listElement = document.createElement('li');
+                listElement.innerText = 'No Results Found';
+                resultsList.appendChild(listElement);
+            }
+        });
+
+        clearButton.addEventListener('click', event => {
+            searchInput.value = '';
+            resultsList.innerHTML = '';
+        });
+
+
+    })();
+</script>
+
+
+</body>
+</html>
